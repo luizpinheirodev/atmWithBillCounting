@@ -1,12 +1,3 @@
-
-DROP TABLE IF EXISTS transactions;
-
-CREATE TABLE transactions (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  transaction_time  DATE NOT NULL,
-  value int NOT NULL
-);
-
 DROP TABLE IF EXISTS bill_dispenser;
 
 CREATE TABLE bill_dispenser (

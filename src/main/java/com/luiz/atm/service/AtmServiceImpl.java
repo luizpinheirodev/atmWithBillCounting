@@ -1,6 +1,6 @@
 package com.luiz.atm.service;
 
-import com.luiz.atm.exception.WithdrawNotEnoughMoneyException;
+import com.luiz.atm.exception.WithdrawNotEnoughMoneyWrongNumberFormatException;
 import com.luiz.atm.model.BillDispenser;
 import com.luiz.atm.model.dto.ResponseBillDto;
 import com.luiz.atm.repository.BillDispenserRepository;
@@ -27,7 +27,7 @@ public class AtmServiceImpl implements AtmService {
         // Validate if ATM has enough money
         Long totalAvailable = billDispenserRepository.sumTotalOfBills();
         if (totalAvailable < value) {
-            throw new WithdrawNotEnoughMoneyException("Insufficient quantity of bills");
+            throw new WithdrawNotEnoughMoneyWrongNumberFormatException("Insufficient quantity of bills");
         }
 
         ResponseBillDto billDto = new ResponseBillDto();

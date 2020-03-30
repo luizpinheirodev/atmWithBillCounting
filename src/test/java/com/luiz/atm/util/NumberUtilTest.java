@@ -1,6 +1,6 @@
 package com.luiz.atm.util;
 
-import com.luiz.atm.exception.WithdrawException;
+import com.luiz.atm.exception.WithdrawWrongNumberFormatException;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,33 +10,32 @@ public class NumberUtilTest {
     @Test
     public void toNumber_String() {
         String number = "abc";
-        Assertions.assertThrows(WithdrawException.class, () -> {
-            NumberUtil.toNumber(number);
+        Assertions.assertThrows(WithdrawWrongNumberFormatException.class, () -> {
+            NumberUtil.toValidNumber(number);
         });
     }
 
     @Test
     public void toNumber_EmptyString() {
         String number = "";
-        Assertions.assertThrows(WithdrawException.class, () -> {
-            NumberUtil.toNumber(number);
+        Assertions.assertThrows(WithdrawWrongNumberFormatException.class, () -> {
+            NumberUtil.toValidNumber(number);
         });
     }
 
     @Test
-    public void toNumber_InvalidValueReturn0() {
+    public void toNumber_InvalidValue() {
         String number = "15";
 
-        int result = NumberUtil.toNumber(number);
-
-        Assert.assertEquals(0, result);
-        Assert.assertNotNull(result);
+        Assertions.assertThrows(WithdrawWrongNumberFormatException.class, () -> {
+            NumberUtil.toValidNumber(number);
+        });
     }
 
     @Test
     public void toNumber_Success() {
         String number = "50";
-        int result = NumberUtil.toNumber(number);
+        int result = NumberUtil.toValidNumber(number);
 
         Assert.assertEquals(50, result);
         Assert.assertNotNull(result);

@@ -1,6 +1,6 @@
 package com.luiz.atm.service;
 
-import com.luiz.atm.exception.WithdrawNotEnoughMoneyException;
+import com.luiz.atm.exception.WithdrawNotEnoughMoneyWrongNumberFormatException;
 import com.luiz.atm.model.Bill;
 import com.luiz.atm.model.BillDispenser;
 import com.luiz.atm.model.dto.ResponseBillDto;
@@ -47,7 +47,7 @@ public class AtmServiceImplTest {
 
         doReturn(50L).when(this.billDispenserRepository).sumTotalOfBills();
 
-        Assertions.assertThrows(WithdrawNotEnoughMoneyException.class, () -> {
+        Assertions.assertThrows(WithdrawNotEnoughMoneyWrongNumberFormatException.class, () -> {
             atmService.withdraw(value);
         });
     }
