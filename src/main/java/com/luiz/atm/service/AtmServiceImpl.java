@@ -47,7 +47,7 @@ public class AtmServiceImpl implements AtmService {
                     billDispenser.setQuantity(billDispenser.getQuantity() - amount);
                     billDispenserRepository.save(billDispenser);
                 } else {
-                    // não há notas suficientes
+                    // there is not enough bills
                     value = updateValue(value, billDispenser.getQuantity(), billAmount);
                     bills.add(createBillLine(billDispenser.getQuantity(), billTypeOrdered[i]));
                     billDispenser.setQuantity(0);
